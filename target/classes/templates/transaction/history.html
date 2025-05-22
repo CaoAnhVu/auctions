@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/default}">
+  <head>
+    <title th:text="${historyType + ' History'}">Transaction History</title>
+  </head>
+  <body>
+    <div layout:fragment="content">
+      <div class="container mt-5">
+        <h2 th:text="${historyType + ' History'}">Transaction History</h2>
+
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th th:text="${historyType == 'Purchase' ? 'Seller' : 'Buyer'}">Other Party</th>
+                <th>Item</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="transaction : ${transactions}">
+                <td th:text="${#temporals.format(transaction.transactionDate, 'dd-MM-yyyy HH:mm')}">01-01-2024</td>
+                <td th:text="${historyType == 'Purchase' ? transaction.seller.fullName : transaction.buyer.fullName}">John Doe</td>
+                <td th:text="${transaction.itemName}">Item Name</td>
+                <td th:text="${transaction.itemDescription}">Description</td>
+                <td th:text="${'$' + transaction.price}">$100.00</td>
+                <td th:text="${transaction.status}">COMPLETED</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div th:if="${transactions.empty}" class="alert alert-info">No transactions found.</div>
+      </div>
+    </div>
+  </body>
+</html>
