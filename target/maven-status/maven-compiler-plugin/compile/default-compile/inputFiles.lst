@@ -9,5 +9,7 @@ D:\workspace\vscode\auctions\src\main\java\com\example\auctions\model\Transactio
 D:\workspace\vscode\auctions\src\main\java\com\example\auctions\service\UserService.java
 D:\workspace\vscode\auctions\src\main\java\com\example\auctions\repository\UserRepository.java
 D:\workspace\vscode\auctions\src\main\java\com\example\auctions\AuctionsApplication.java
+D:\workspace\vscode\auctions\src\main\java\com\example\auctions\controller\HomeController.java
 D:\workspace\vscode\auctions\src\main\java\com\example\auctions\model\User.java
+D:\workspace\vscode\auctions\src\main\java\com\example\auctions\config\PasswordConfig.java
 D:\workspace\vscode\auctions\src\main\java\com\example\auctions\config\SecurityConfig.java

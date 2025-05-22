@@ -41,4 +41,4 @@ public class Transaction {
     public Transaction() {
         this.transactionDate = LocalDateTime.now();
     }
-} 
+}

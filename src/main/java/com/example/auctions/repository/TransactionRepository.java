@@ -8,4 +8,4 @@ import java.util.List;
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
     List<Transaction> findByBuyerOrderByTransactionDateDesc(User buyer);
     List<Transaction> findBySellerOrderByTransactionDateDesc(User seller);
-} 
+}

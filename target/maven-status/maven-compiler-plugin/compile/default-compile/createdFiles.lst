@@ -4,10 +4,11 @@ com\example\auctions\model\TransactionStatus.class
 com\example\auctions\config\SecurityConfig.class
 com\example\auctions\repository\UserRepository.class
 com\example\auctions\model\Transaction.class
+com\example\auctions\config\PasswordConfig.class
 com\example\auctions\service\UserService.class
 com\example\auctions\controller\TransactionController.class
 com\example\auctions\repository\TransactionRepository.class
-com\example\auctions\controller\DashboardController.class
+com\example\auctions\controller\HomeController.class
 com\example\auctions\model\UserRole.class
 com\example\auctions\controller\UserController.class
 com\example\auctions\service\TransactionService.class
