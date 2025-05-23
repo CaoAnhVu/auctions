@@ -69,4 +69,13 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "User(id=" + id + 
+               ", fullName=" + fullName + 
+               ", email=" + email + 
+               ", phoneNumber=" + phoneNumber + 
+               ", role=" + role + ")";
+    }
 }

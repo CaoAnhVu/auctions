@@ -83,6 +83,31 @@
       .main-content {
         min-height: calc(100vh - 280px);
       }
+
+      .dropdown-menu {
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .dropdown-item {
+        padding: 0.75rem 1.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .dropdown-item:hover {
+        background-color: #f8f9fa;
+        color: var(--primary-color);
+      }
+
+      .dropdown-item i {
+        margin-right: 0.5rem;
+        color: #6c757d;
+      }
+
+      .dropdown-item:hover i {
+        color: var(--primary-color);
+      }
     </style>
   </head>
   <body class="d-flex flex-column min-vh-100">
@@ -96,6 +121,43 @@
           <ul class="navbar-nav me-auto">
             <li class="nav-item" sec:authorize="isAuthenticated()">
               <a class="nav-link" href="/dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a>
+            </li>
+            <!-- Auction Links -->
+            <li class="nav-item dropdown" sec:authorize="hasRole('SELLER')">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"> <i class="bi bi-box-seam"></i> My Auctions </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="/auctions"> <i class="bi bi-list-ul"></i>View All Auctions </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/auctions/create"> <i class="bi bi-plus-lg"></i>Create New Auction </a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="/auctions?status=draft"> <i class="bi bi-file-earmark"></i>Draft Auctions </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/auctions?status=active"> <i class="bi bi-play-circle"></i>Active Auctions </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/auctions?status=ended"> <i class="bi bi-check-circle"></i>Ended Auctions </a>
+                </li>
+              </ul>
+            </li>
+            <!-- Bidding Links -->
+            <li class="nav-item dropdown" sec:authorize="hasRole('BUYER')">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"> <i class="bi bi-cash-stack"></i> Bidding </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="/auctions/browse"> <i class="bi bi-search"></i>Browse Auctions </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/auctions/my-bids"> <i class="bi bi-bookmark"></i>My Bids </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/auctions/won"> <i class="bi bi-trophy"></i>Won Auctions </a>
+                </li>
+              </ul>
             </li>
             <li class="nav-item" sec:authorize="isAuthenticated()">
               <a class="nav-link" href="/transactions/history"><i class="bi bi-clock-history"></i> Transaction History</a>
@@ -131,6 +193,14 @@
           <i class="bi bi-check-circle-fill me-2"></i>
           <div>Profile updated successfully!</div>
         </div>
+        <div th:if="${success}" class="alert alert-success d-flex align-items-center" role="alert">
+          <i class="bi bi-check-circle-fill me-2"></i>
+          <div th:text="${success}"></div>
+        </div>
+        <div th:if="${error}" class="alert alert-danger d-flex align-items-center" role="alert">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i>
+          <div th:text="${error}"></div>
+        </div>
         <div th:replace="${content}">
           <!-- Content goes here -->
         </div>
@@ -149,6 +219,10 @@
             <ul class="list-unstyled">
               <li><a href="/" class="text-muted text-decoration-none">Home</a></li>
               <li><a href="/dashboard" class="text-muted text-decoration-none">Dashboard</a></li>
+              <li><a href="/auctions/browse" class="text-muted text-decoration-none">Browse Auctions</a></li>
+              <li sec:authorize="hasRole('SELLER')">
+                <a href="/auctions" class="text-muted text-decoration-none">My Auctions</a>
+              </li>
               <li><a href="/profile" class="text-muted text-decoration-none">Profile</a></li>
             </ul>
           </div>
